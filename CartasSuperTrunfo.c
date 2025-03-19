@@ -1,9 +1,11 @@
 #include <stdio.h>
 
 int main(){
-    int populacao1, populacao2, pontos1, pontos2;
+    int pontos1, pontos2, comparacaopontos, comparacaopopulacao, comparacaoarea, comparacaopib, comparacaoper, comparacaodens, comparacaopoder; 
+    unsigned long int populacao1, populacao2; 
     char estado1, estado2, codigo1[10], codigo2[10], cidade1[20], cidade2[20];
-    float area1, area2, pib1, pib2, dens1, dens2, per1, per2;
+    float area1, area2, pib1, pib2, dens1, dens2, per1, per2, superpoder1, superpoder2;
+
     
     // Início das instruções para cadastro de 2 cartas no jogo Super Trunfo - Estados do Brasil
 
@@ -26,7 +28,7 @@ int main(){
     scanf("%19s", cidade1);
 
     printf("População habitacional: ");
-    scanf("%d", &populacao1);
+    scanf("%lu", &populacao1);
 
     printf("Área (em km²): ");
     scanf("%f", &area1);
@@ -55,7 +57,7 @@ int main(){
     scanf("%19s", cidade2);
 
     printf("População habitacional (em milhões): ");
-    scanf("%d", &populacao2);
+    scanf("%lu", &populacao2);
 
     printf("Área (em km²): ");
     scanf(" %f", &area2);
@@ -77,6 +79,10 @@ int main(){
     per1 = (float) pib1 / populacao1;
     per2 = (float) pib2 / populacao2;
 
+    // Cálculo dos Super Poderes das cartas
+    superpoder1 = (float) populacao1 + area1 + pib1 + pontos1 + per1 + (1 / dens1);
+    superpoder2 = (float) populacao2 + area2 + pib2 + pontos2 + per2 + (1 / dens2);
+
     // Visualização dos dados das cartas cadastradas
     printf("\nJogador, veja abaixo os dados das suas cartas:\n");
 
@@ -84,28 +90,49 @@ int main(){
     printf("Estado: %c\n", estado1);
     printf("Código da Carta: %s\n", codigo1);
     printf("Nome da cidade: %s\n", cidade1);
-    printf("População de %s: %d milhões de habitantes\n" ,cidade1 , populacao1);
+    printf("População de %s: %lu milhões de habitantes\n" ,cidade1 , populacao1);
     printf("Área de %s: %.2f km²\n", cidade1, area1);
     printf("PIB de %s: R$ %.2f\n", cidade1, pib1);
     printf("Quantidade de pontos turísticos de %s: %d\n", cidade1, pontos1);
     printf("Densidade populacional de %s: %.2f hab/km²\n", cidade1, dens1);
     printf("PIB per Capita de %s: %.2f reais\n", cidade1, per1);
+    printf("Super Poder: %.2f\n", superpoder1);
 
 
     printf("\nCARTA 2\n");
     printf("Estado: %c\n", estado2);
     printf("Código da Carta: %s\n", codigo2);
     printf("Nome da cidade: %s\n", cidade2);
-    printf("População de %s: %d milhões de habitantes\n" ,cidade2 , populacao2);
+    printf("População de %s: %lu milhões de habitantes\n" ,cidade2 , populacao2);
     printf("Área de %s: %.2f km²\n", cidade2, area2);
     printf("PIB de %s: R$ %.2f\n", cidade2, pib2);
     printf("Quantidade de pontos turísticos de %s: %d\n", cidade2, pontos2);
     printf("Densidade populacional de %s: %.2f hab/km²\n", cidade2, dens2);
     printf("PIB per Capita de %s: %.2f reais\n", cidade2, per2);
+    printf("Super Poder: %.2f\n", superpoder2);
+
+    // Comparação dos atributos entre as cartas
+    comparacaopopulacao = populacao1 > populacao2;
+    comparacaoarea = area1 > area2;
+    comparacaopib = pib1 > pib2;
+    comparacaopontos = pontos1 > pontos2;
+    comparacaodens = dens1 < dens2;
+    comparacaoper = per1 > per2;
+    comparacaopoder = superpoder1 > superpoder2;
+    // 1 para VERDADEIRO (carta 1 vence) e 0 para FALSO (carta 2 vence)
+
+    // Exibindo as comparações de atributos para definir carta vencedora
+    printf("\nCOMPARAÇÃO ENTRE OS ATRIBUTOS DA CARTA 1 ENTRE A CARTA 2:\n");
+    printf("\n*** Se o resultado for 1 vence a Carta 1 e se o resultado for 0 vence a Carta 2 ***\n");
+    printf("População habitacional: %d\n", comparacaopopulacao);
+    printf("Área: %d\n", comparacaoarea);
+    printf("PIB: %d\n", comparacaopib);
+    printf("Pontos turísticos: %d\n", comparacaopontos);
+    printf("Densidade populacional: %d\n", comparacaodens);
+    printf("PIB per Capita: %d\n", comparacaoper);
+    printf("Super Poder: %d\n", comparacaopoder);
+
 
     return 0;
-
-
-
 
 }
