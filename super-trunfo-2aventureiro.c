@@ -195,7 +195,6 @@ int main(){
         break;
         default:
         printf("\nOpção inválida!\n");
-        break;
         }
 
 
