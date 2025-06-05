@@ -141,7 +141,6 @@ int main(){
         break;
         default:
         printf("\nOpção inválida!\n");
-        break;
         }
 
     // Menu para escolha do segundo atributo
@@ -186,7 +185,6 @@ int main(){
             break;
             default:
             printf("\nOpção inválida!\n");
-            break;
             }
         
         }
